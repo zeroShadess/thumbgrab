@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Image Compressor | Sıkıştırıcı</title>
+  <meta name="description" content="Resimleri kalite kaybetmeden sıkıştır. JPEG, PNG, WebP desteklenir." />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#ff0000" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="/css/image-compressor.css" />
+</head>
+<body>
+
+  <header class="site-header" role="banner">
+    <div class="header-inner">
+      <a href="/index.html" class="logo" aria-label="ThumbGrab Home">
+        <span class="logo-icon" aria-hidden="true">▶</span>
+        <span class="logo-text" data-i18n="logo">ThumbGrab</span>
+      </a>
+
+      <div class="header-controls">
+        <button class="lang-btn" id="langToggle" aria-label="Dil değiştir">
+          <span id="langLabel">TR</span>
+        </button>
+        <button class="theme-btn" id="themeToggle" aria-label="Tema değiştir">
+          <span class="theme-icon" id="themeIcon">☀️</span>
+        </button>
+        <a href="/index.html" class="back-link" data-i18n="backLink">← Ana Sayfa</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section class="compressor-hero" aria-labelledby="hero-title">
+      <div class="hero-bg" aria-hidden="true">
+        <div class="glow glow-1"></div>
+        <div class="glow glow-2"></div>
+        <div class="grid-overlay"></div>
+      </div>
+
+      <div class="hero-content">
+        <div class="badge" data-i18n="badge">🖼️ Image Compressor</div>
+
+        <h1 id="hero-title">
+          <span data-i18n="heroLine1">Resim</span><br />
+          <em data-i18n="heroLine2">Sıkıştırıcı</em>
+        </h1>
+
+        <p class="hero-sub" data-i18n="heroSub">
+          Kalite kaybetmeden boyutunu azalt. Tamamen tarayıcıda çalışır.
+        </p>
+
+        <div class="upload-area" id="uploadArea">
+          <input type="file" id="fileInput" accept="image/jpeg,image/png,image/webp" hidden />
+          
+          <div class="upload-content" id="uploadContent">
+            <div class="upload-icon">📁</div>
+            <p class="upload-text" data-i18n="uploadText">Dosya seç veya sürükle</p>
+            <p class="upload-hint" data-i18n="uploadHint">JPEG, PNG, WebP (max 5MB)</p>
+          </div>
+
+          <div class="upload-loading" id="uploadLoading" hidden>
+            <div class="loader"></div>
+            <p data-i18n="compressing">Sıkıştırılıyor...</p>
+          </div>
+        </div>
+
+        <div class="quality-control" id="qualityControl" hidden>
+          <label for="qualitySlider" data-i18n="qualityLabel">Kalite: <span id="qualityValue">80%</span></label>
+          <input type="range" id="qualitySlider" min="60" max="90" value="80" />
+        </div>
+
+        <div class="result-area" id="resultArea" hidden>
+          <div class="preview-grid">
+            <div class="preview-card">
+              <h3 data-i18n="originalTitle">Original</h3>
+              <div class="preview-img-wrap">
+                <img id="originalPreview" alt="Original" />
+              </div>
+              <p class="file-size" id="originalSize">-</p>
+            </div>
+
+            <div class="preview-card">
+              <h3 data-i18n="compressedTitle">Sıkıştırılmış</h3>
+              <div class="preview-img-wrap">
+                <img id="compressedPreview" alt="Compressed" />
+              </div>
+              <p class="file-size" id="compressedSize">-</p>
+              <p class="savings" id="savingsText">-</p>
+            </div>
+          </div>
+
+          <button class="btn-download-compressed" id="downloadBtn" disabled data-i18n="downloadBtn">
+            ⬇ İndir
+          </button>
+        </div>
+
+        <!-- HISTORY SECTION (yeni eklendi) -->
+        <div class="history-section" id="historySection" hidden>
+          <div class="history-header">
+            <span class="history-title" data-i18n="historyTitle">Sıkıştırma Geçmişi</span>
+            <button class="history-clear" id="historyClear" type="button" data-i18n="historyClear">Temizle</button>
+          </div>
+          <div class="history-list" id="historyList"></div>
+        </div>
+
+        <p class="error-msg" id="errorMsg" role="alert" aria-live="polite"></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <p data-i18n="footer">© 2025 ThumbGrab · Tarayıcıda çalışır · Veri saklamaz</p>
+  </footer>
+
+  <script src="/js/image-compressor.js"></script>
+</body>
+</html>

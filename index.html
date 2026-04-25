@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO Meta Tags -->
+  <title>YouTube Thumbnail İndirici | HD Küçük Resim İndir</title>
+  <meta name="description" content="YouTube video URL'sini yapıştır, HD ve SD küçük resimleri anında önizle ve tek tıkla indir. Hızlı, güvenli, ücretsiz." />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#ff0000" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="YouTube Thumbnail İndirici" />
+  <meta property="og:description" content="YouTube küçük resimlerini HD kalitede tek tıkla indir." />
+  <meta property="og:type" content="website" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+
+  <!-- ═══ HEADER ═══ -->
+  <header class="site-header" role="banner">
+    <div class="header-inner">
+      <div class="logo" aria-label="YouTube Thumbnail İndirici">
+        <span class="logo-icon" aria-hidden="true">▶</span>
+        <span class="logo-text" data-i18n="logo">ThumbGrab</span>
+      </div>
+
+      <div class="header-controls">
+        <button class="lang-btn" id="langToggle" aria-label="Dil değiştir">
+          <span id="langLabel">TR</span>
+        </button>
+        <button class="theme-btn" id="themeToggle" aria-label="Tema değiştir">
+          <span class="theme-icon" id="themeIcon">☀️</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ═══ HERO ═══ -->
+  <main id="main-content">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-bg" aria-hidden="true">
+        <div class="glow glow-1"></div>
+        <div class="glow glow-2"></div>
+        <div class="grid-overlay"></div>
+      </div>
+
+      <div class="hero-content">
+        <div class="badge" data-i18n="badge">✦ Ücretsiz &amp; Sınırsız</div>
+
+        <h1 id="hero-title">
+          <span data-i18n="heroLine1">YouTube Küçük Resim</span><br />
+          <em data-i18n="heroLine2">İndirici</em>
+        </h1>
+
+        <p class="hero-sub" data-i18n="heroSub">
+          URL yapıştır → Önizle → İndir. Kayıt yok, kısıtlama yok.
+        </p>
+
+        <!-- Tools Link - data-i18n eklendi -->
+        <div class="tools-link">
+  <a href="/tools/image-compressor.html" class="tool-card">
+    <span class="tool-icon">🖼️</span>
+    <span class="tool-name" data-i18n="toolName">Resim Sıkıştırıcı</span>
+  </a>
+  <a href="/tools/image-resizer.html" class="tool-card">
+    <span class="tool-icon">📐</span>
+    <span class="tool-name" data-i18n="toolResizerName">Resim Boyutlandırıcı</span>
+  </a>
+</div>
+        <!-- ── Input alanı ── -->
+        <div class="input-wrapper" role="search">
+          <label for="urlInput" class="sr-only" data-i18n="inputLabel">YouTube video URL'si</label>
+          <div class="input-row">
+            <span class="input-icon" aria-hidden="true">🔗</span>
+            <input
+              type="url"
+              id="urlInput"
+              autocomplete="off"
+              autocorrect="off"
+              spellcheck="false"
+              data-i18n-placeholder="inputPlaceholder"
+              placeholder="YouTube URL yapıştır..."
+              aria-describedby="urlError"
+            />
+            <button class="btn-extract" id="extractBtn" aria-label="Küçük resmi getir">
+              <span class="btn-text" data-i18n="btnExtract">⚡ Anında Getir</span>
+              <span class="btn-loader" aria-hidden="true"></span>
+            </button>
+          </div>
+          <p class="error-msg" id="urlError" role="alert" aria-live="polite"></p>
+        </div>
+
+        <div class="format-tags" aria-label="Desteklenen URL formatları">
+          <span>youtube.com/watch?v=</span>
+          <span>youtu.be/</span>
+          <span>shorts/</span>
+          <span>embed/</span>
+        </div>
+
+        <div class="history-section" id="historySection" hidden>
+          <div class="history-header">
+            <span class="history-title" data-i18n="recentTitle">Son İndirilenler</span>
+            <button class="history-clear" id="historyClear" type="button" data-i18n="recentClear">Temizle</button>
+          </div>
+          <div class="history-list" id="historyList"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ SONUÇ ALANI ═══ -->
+    <section class="result-section" id="resultSection" aria-live="polite" aria-atomic="true" hidden>
+      <div class="result-inner">
+        <div class="video-meta">
+          <span class="meta-label" data-i18n="videoId">Video ID:</span>
+          <code class="video-id-display" id="videoIdDisplay"></code>
+        </div>
+        <div class="quality-grid" id="qualityGrid" role="list"></div>
+      </div>
+    </section>
+
+    <!-- ═══ FAQ ═══ -->
+    <section class="faq-section" aria-labelledby="faq-title">
+      <div class="faq-inner">
+        <h2 id="faq-title" data-i18n="faqTitle">Sık Sorulan Sorular</h2>
+        <div class="faq-list" itemscope itemtype="https://schema.org/FAQPage">
+          <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+            <summary itemprop="name" data-i18n="faq1q">YouTube küçük resmi nasıl indirilir?</summary>
+            <div class="faq-body" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+              <p itemprop="text" data-i18n="faq1a">Video URL'sini yukarıdaki kutuya yapıştır, "Getir" düğmesine bas. İstediğin kaliteyi seç ve "İndir" butonuna tıkla.</p>
+            </div>
+          </details>
+          <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+            <summary itemprop="name" data-i18n="faq2q">Hangi kaliteler destekleniyor?</summary>
+            <div class="faq-body" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+              <p itemprop="text" data-i18n="faq2a">maxresdefault (1280×720), hqdefault (480×360) ve sddefault (640×480) kaliteleri sunulmaktadır.</p>
+            </div>
+          </details>
+          <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+            <summary itemprop="name" data-i18n="faq3q">Verilerim saklanıyor mu?</summary>
+            <div class="faq-body" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+              <p itemprop="text" data-i18n="faq3a">Hayır. Hiçbir veri sunucuya gönderilmez veya saklanmaz. Tüm işlem tarayıcınızda gerçekleşir.</p>
+            </div>
+          </details>
+          <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+            <summary itemprop="name" data-i18n="faq4q">Shorts ve embed URL'leri destekleniyor mu?</summary>
+            <div class="faq-body" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+              <p itemprop="text" data-i18n="faq4a">Evet. youtube.com/watch, youtu.be/, /shorts/ ve /embed/ formatlarının tamamı desteklenmektedir.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <p data-i18n="footer">© 2025 ThumbGrab · Tarayıcıda çalışır · Veri saklamaz</p>
+  </footer>
+
+  <script src="/js/script.js"></script>
+</body>
+</html>

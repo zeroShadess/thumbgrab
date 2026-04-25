@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Image Resizer | Görsel Boyutlandırıcı</title>
+  <meta name="description" content="Görselleri kolayca yeniden boyutlandır. Kare, yatay, portre veya özel boyut. Tamamen tarayıcıda." />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#ff0000" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="/css/image-resizer.css" />
+</head>
+<body>
+  <header class="site-header" role="banner">
+    <div class="header-inner">
+      <a href="/index.html" class="logo" aria-label="ThumbGrab Home">
+        <span class="logo-icon" aria-hidden="true">▶</span>
+        <span class="logo-text" data-i18n="logo">ThumbGrab</span>
+      </a>
+      <div class="header-controls">
+        <button class="lang-btn" id="langToggle" aria-label="Dil değiştir"><span id="langLabel">TR</span></button>
+        <button class="theme-btn" id="themeToggle" aria-label="Tema değiştir"><span class="theme-icon" id="themeIcon">☀️</span></button>
+        <a href="/index.html" class="back-link" data-i18n="backLink">← Ana Sayfa</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="resizer-hero" aria-labelledby="hero-title">
+      <div class="hero-bg" aria-hidden="true"><div class="glow glow-1"></div><div class="glow glow-2"></div><div class="grid-overlay"></div></div>
+      <div class="hero-content">
+        <div class="badge" data-i18n="badge">🖼️ Image Resizer</div>
+        <h1 id="hero-title"><span data-i18n="heroLine1">Görsel</span><br /><em data-i18n="heroLine2">Boyutlandırıcı</em></h1>
+        <p class="hero-sub" data-i18n="heroSub">Resimleri istediğin boyuta getir. Hızlı, ücretsiz, gizlilik dostu.</p>
+
+        <div class="upload-area" id="uploadArea">
+          <input type="file" id="fileInput" accept="image/jpeg,image/png,image/webp" hidden />
+          <div class="upload-content" id="uploadContent">
+            <div class="upload-icon">📸</div>
+            <p class="upload-text" data-i18n="uploadText">Dosya seç veya sürükle</p>
+            <p class="upload-hint" data-i18n="uploadHint">JPEG, PNG, WebP (max 10MB)</p>
+          </div>
+          <div class="upload-loading" id="uploadLoading" hidden><div class="loader"></div><p data-i18n="processing">İşleniyor...</p></div>
+        </div>
+
+        <div class="resize-controls" id="resizeControls" hidden>
+          <div class="preset-buttons">
+            <button type="button" data-preset="square" class="preset-btn" data-i18n="presetSquare">Kare 1080x1080</button>
+            <button type="button" data-preset="landscape" class="preset-btn" data-i18n="presetLandscape">Yatay 1920x1080</button>
+            <button type="button" data-preset="portrait" class="preset-btn" data-i18n="presetPortrait">Portre 1080x1350</button>
+          </div>
+          <div class="custom-size">
+            <div class="size-input-group">
+              <label data-i18n="widthLabel">Genişlik:</label>
+              <input type="number" id="widthInput" value="1080" min="32" max="4000" step="1" />
+              <span class="unit">px</span>
+            </div>
+            <div class="size-input-group">
+              <label data-i18n="heightLabel">Yükseklik:</label>
+              <input type="number" id="heightInput" value="1080" min="32" max="4000" step="1" />
+              <span class="unit">px</span>
+            </div>
+            <div class="aspect-check">
+              <input type="checkbox" id="keepAspect" checked />
+              <label for="keepAspect" data-i18n="keepAspect">En-boy oranını koru</label>
+            </div>
+          </div>
+          <div class="format-quality">
+            <label data-i18n="formatLabel">Çıktı formatı:</label>
+            <select id="outputFormat">
+              <option value="image/jpeg">JPEG</option>
+              <option value="image/png">PNG</option>
+              <option value="image/webp">WebP</option>
+            </select>
+            <div class="quality-slider-wrapper" id="jpegQualityWrapper">
+              <label data-i18n="qualityLabel">Kalite: <span id="qualityValue">85</span>%</label>
+              <input type="range" id="qualitySlider" min="60" max="95" value="85" />
+            </div>
+          </div>
+          <button class="btn-resize" id="resizeBtn" data-i18n="resizeBtn">Boyutlandır</button>
+        </div>
+
+        <div class="result-area" id="resultArea" hidden>
+          <div class="preview-grid">
+            <div class="preview-card"><h3 data-i18n="originalTitle">Orijinal</h3><div class="preview-img-wrap"><img id="originalPreview" alt="Original" /></div><p class="file-size" id="originalSize">-</p><p class="dimensions" id="originalDims"></p></div>
+            <div class="preview-card"><h3 data-i18n="resizedTitle">Boyutlandırılmış</h3><div class="preview-img-wrap"><img id="resizedPreview" alt="Resized" /></div><p class="file-size" id="resizedSize">-</p><p class="dimensions" id="resizedDims"></p><p class="savings" id="sizeDiff"></p></div>
+          </div>
+          <button class="btn-download-resized" id="downloadBtn" disabled data-i18n="downloadBtn">⬇ İndir</button>
+        </div>
+
+        <div class="history-section" id="historySection" hidden>
+          <div class="history-header"><span class="history-title" data-i18n="historyTitle">Boyutlandırma Geçmişi</span><button class="history-clear" id="historyClear" data-i18n="historyClear">Temizle</button></div>
+          <div class="history-list" id="historyList"></div>
+        </div>
+        <p class="error-msg" id="errorMsg" role="alert"></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><p data-i18n="footer">© 2025 ThumbGrab · Tarayıcıda çalışır · Veri saklamaz</p></footer>
+
+  <script src="/js/image-resizer.js"></script>
+</body>
+</html>

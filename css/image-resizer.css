@@ -1,0 +1,263 @@
+/* Image Resizer Styles - Consistent with dark/light theme */
+
+.resizer-hero {
+  min-height: calc(100vh - 80px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem 3rem;
+  position: relative;
+}
+
+.upload-area {
+  width: 100%;
+  max-width: 500px;
+  min-height: 180px;
+  border: 2px dashed var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--surface-2);
+  cursor: pointer;
+  transition: all var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem 0;
+}
+.upload-area:hover, .upload-area.dragover {
+  border-color: var(--red);
+  background: var(--surface-3);
+}
+.upload-content, .upload-loading { text-align: center; padding: 1.5rem; }
+.upload-icon { font-size: 2.5rem; margin-bottom: 0.5rem; }
+.upload-text { font-size: 1rem; margin-bottom: 0.25rem; }
+.upload-hint { font-size: 0.75rem; color: var(--text-muted); }
+.loader { width: 40px; height: 40px; border: 3px solid var(--surface-3); border-top-color: var(--red); border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 1rem; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.resize-controls {
+  width: 100%;
+  max-width: 520px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.2rem;
+  margin: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.preset-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  justify-content: center;
+}
+.preset-btn {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+  padding: 0.4rem 1rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition);
+  color: aliceblue;
+}
+.preset-btn:hover {
+  border-color: var(--red);
+  background: var(--surface-3);
+  transform: translateY(-1px);
+}
+.custom-size {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  align-items: flex-end;
+}
+.size-input-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--surface-2);
+  padding: 0.3rem 0.8rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+}
+.size-input-group label { font-size: 0.75rem; font-weight: 500; color: var(--text-muted); }
+.size-input-group input {
+  width: 90px;
+  background: none;
+  border: none;
+  color: var(--text);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-align: center;
+}
+.size-input-group .unit { font-size: 0.7rem; color: var(--text-muted); }
+.aspect-check {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+}
+.format-quality {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+}
+.format-quality select {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  padding: 0.3rem 0.6rem;
+  border-radius: var(--radius-md);
+  color: var(--text);
+}
+.quality-slider-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.quality-slider-wrapper input[type="range"] {
+  width: 120px;
+  height: 5px;
+  -webkit-appearance: none;
+}
+.quality-slider-wrapper input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 14px;
+  height: 14px;
+  background: var(--red);
+  border-radius: 50%;
+  cursor: pointer;
+}
+.btn-resize {
+  background: var(--red);
+  color: white;
+  border: none;
+  padding: 0.7rem;
+  border-radius: var(--radius-md);
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+.btn-resize:hover {
+  background: var(--red-dim);
+  transform: translateY(-2px);
+}
+.result-area {
+  width: 100%;
+  max-width: 700px;
+  margin-top: 1rem;
+}
+.preview-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+}
+.preview-card {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 0.8rem;
+}
+.preview-img-wrap {
+  aspect-ratio: 1/1;
+  background: var(--surface-3);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+}
+.preview-img-wrap img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+.file-size, .dimensions {
+  font-size: 0.75rem;
+  text-align: center;
+  color: var(--text-muted);
+}
+.savings {
+  font-size: 0.8rem;
+  text-align: center;
+  font-weight: bold;
+  color: var(--green);
+}
+.btn-download-resized {
+  display: block;
+  width: 100%;
+  max-width: 250px;
+  margin: 1rem auto 0;
+  background: var(--green);
+  color: white;
+  border: none;
+  padding: 0.7rem;
+  border-radius: var(--radius-md);
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+.btn-download-resized:hover:not(:disabled) {
+  background: #22c55e;
+  transform: translateY(-2px);
+}
+.btn-download-resized:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.history-section {
+  width: 100%;
+  max-width: 500px;
+  margin-top: 1.5rem;
+}
+.history-item {
+  display: flex;
+  justify-content: space-between;
+  background: var(--surface-2);
+  padding: 0.5rem 0.8rem;
+  border-radius: var(--radius-md);
+  margin-bottom: 0.5rem;
+  font-size: 0.75rem;
+}
+.history-filename {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
+}
+.history-dims {
+  color: var(--red);
+  font-weight: 600;
+}
+.error-msg {
+  color: var(--red);
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+}
+@media (max-width: 600px) {
+  .preview-grid { grid-template-columns: 1fr; }
+  .custom-size { flex-direction: column; align-items: stretch; }
+  .size-input-group { justify-content: space-between; }
+  .format-quality { flex-direction: column; align-items: stretch; }
+  .back-link { display: none; } /* Mobilde ana sayfa linki gizli */
+}
+.back-link {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.85rem;
+  padding: 0.4rem 0.8rem;
+  border-radius: var(--radius-sm);
+  transition: all var(--transition);
+}
+
+.back-link:hover {
+  color: var(--text);
+  background: var(--surface-2);
+}
