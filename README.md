@@ -8,7 +8,7 @@ Fast and simple thumbnail downloader tool.
 - Fast performance
 
 ## 🌐 Live Demo
-https://thumbnailgrab.netlify.app/
+https://nextoolsx.com.tr
 
 ## 🛠️ Technologies
 - HTML
