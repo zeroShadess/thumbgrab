@@ -1,4 +1,4 @@
-# ThumbGrab
+# NexToolsX
 
 Fast and simple thumbnail downloader tool.
 
